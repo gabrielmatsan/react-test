@@ -37,7 +37,7 @@ export function OrderTableFilters() {
   const customerName = searchParams.get("customerName");
   const status = searchParams.get("status");
 
-  const { register, handleSubmit, control } = useForm({
+  const { register, handleSubmit, control, reset } = useForm({
     resolver: zodResolver(orderFiltersSchema),
     defaultValues: {
       orderId: orderId ?? undefined,
@@ -73,6 +73,22 @@ export function OrderTableFilters() {
       }
 
       state.set("page", "1");
+      return state;
+    });
+  }
+
+  function handleRemoveFilters() {
+    setSearchParams((state) => {
+      state.delete("orderId");
+      state.delete("customerName");
+      state.delete("status");
+      state.set("page", "1");
+
+      reset({
+        orderId: '',
+        customerName: '',
+        status: "all",
+      });
       return state;
     });
   }
@@ -130,7 +146,12 @@ export function OrderTableFilters() {
           Filtrar resultados
         </Button>
 
-        <Button type="button" variant="secondary" size="xs">
+        <Button
+          type="button"
+          variant="secondary"
+          size="xs"
+          onClick={handleRemoveFilters}
+        >
           <X className="mr-2 h-3 w-3" />
           Remover filtros
         </Button>

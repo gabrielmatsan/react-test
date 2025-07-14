@@ -37,7 +37,7 @@ export function Orders() {
         pageIndex,
         orderId,
         customerName,
-        status,
+        status: status === "all" ? undefined : status,
       }),
     staleTime: Infinity,
   });

@@ -3,7 +3,8 @@ type OrderStatusType =
   | "canceled"
   | "processing"
   | "delivering"
-  | "delivered";
+  | "delivered"
+  | "all";
 
 interface OrderStatusProps {
   status: OrderStatusType;
@@ -29,6 +30,10 @@ const orderStatusMap = {
   delivered: {
     label: "Entregue",
     color: "bg-green-500",
+  },
+  all: {
+    label: "Todos",
+    color: "bg-gray-500",
   },
 };
 

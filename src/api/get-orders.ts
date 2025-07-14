@@ -4,7 +4,7 @@ export interface GetOrdersQuery {
   pageIndex?: number
   orderId?: string | null
   customerName?: string | null
-  status?: 'pending' | 'canceled' | 'processing' | 'delivering' | 'delivered' | 'all'
+  status?: string | null
 }
 
 export interface GetOrdersResponse {
